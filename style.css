@@ -1,0 +1,204 @@
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Georgia', serif;
+}
+
+.page {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0; left: 0;
+}
+
+.page.active {
+  display: block;
+}
+
+/* ===== PAGE 1: OPENING ===== */
+#page-opening {
+  background: #0a3d4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.curtain {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #1a5c6e 0%,
+    #0d4a5a 40%,
+    #0a3d4a 100%
+  );
+  z-index: 2;
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+/* Gold line on curtain edges */
+.curtain::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #c9a84c, #f0d080, #c9a84c, transparent);
+}
+
+.left-curtain {
+  left: 0;
+}
+
+.left-curtain::after {
+  right: 0;
+}
+
+.right-curtain {
+  right: 0;
+}
+
+.right-curtain::after {
+  left: 0;
+}
+
+/* Open state */
+.left-curtain.open {
+  transform: translateX(-100%);
+}
+
+.right-curtain.open {
+  transform: translateX(100%);
+}
+
+/* Tap Button */
+.tap-btn {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f0d080, #c9a84c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  text-align: center;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.8),
+              0 0 40px rgba(201, 168, 76, 0.4);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.8), 0 0 40px rgba(201, 168, 76, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(201, 168, 76, 1), 0 0 60px rgba(201, 168, 76, 0.7); }
+}
+
+
+/* ===== PAGE 2: CURTAIN REVEAL ===== */
+#page-2 {
+  background: #0a1a2a;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.curtain2 {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    135deg,
+    #1a5c6e 0%,
+    #0d4a5a 40%,
+    #0a3d4a 100%
+  );
+  z-index: 2;
+  transition: transform 1.4s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.curtain2::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #c9a84c, #f0d080, #c9a84c, transparent);
+}
+
+.top-curtain {
+  top: 0;
+}
+
+.top-curtain::after {
+  bottom: 0;
+}
+
+.bottom-curtain {
+  bottom: 0;
+}
+
+.bottom-curtain::after {
+  top: 0;
+}
+
+.top-curtain.open2 {
+  transform: translateY(-100%);
+}
+
+.bottom-curtain.open2 {
+  transform: translateY(100%);
+}
+
+/* Center content */
+.reveal-center {
+  text-align: center;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.8s ease 1.2s, transform 0.8s ease 1.2s;
+}
+
+.reveal-center.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal-small {
+  color: #c9a84c;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.reveal-name {
+  color: #ffffff;
+  font-size: 42px;
+  letter-spacing: 6px;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.5);
+}
+
+.reveal-and {
+  color: #c9a84c;
+  font-size: 32px;
+  margin: 8px 0;
+}
