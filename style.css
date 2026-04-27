@@ -89,18 +89,17 @@ body {
 .reveal-center {
   text-align: center;
   opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 .reveal-center.show {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0);
 }
-
 .reveal-small {
   color: #c9a84c;
-  font-size: 13px;
+  font-size: 20px;
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 16px;
