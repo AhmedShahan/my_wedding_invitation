@@ -18,7 +18,7 @@ tapBtn.addEventListener('click', function () {
 
     setTimeout(() => {
       document.querySelector('.reveal-center').classList.add('show');
-    }, 300);
+    }, 700);
 
   }, 1300);
 });
