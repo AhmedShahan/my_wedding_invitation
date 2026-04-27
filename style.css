@@ -117,3 +117,134 @@ body {
   font-size: 32px;
   margin: 8px 0;
 }
+
+/* ===== PAGE 3: MAIN INVITATION ===== */
+.scroll-page {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-page.active {
+  display: flex;
+}
+
+#page-3 {
+  background: linear-gradient(160deg, #0a1a2a 0%, #0d2d3a 50%, #0a1a2a 100%);
+}
+
+.page3-content {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.p3-top-line, .p3-bottom-line {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c, transparent);
+  margin: 8px 0;
+}
+
+.p3-small-top {
+  color: #c9a84c;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+/* Couple Photo */
+.couple-photo-wrap {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #c9a84c;
+  box-shadow: 0 0 30px rgba(201,168,76,0.4);
+  margin: 10px 0;
+}
+
+.couple-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* No photo fallback */
+.couple-photo-wrap:has(img[src="images/couple.jpg"]:not([naturalWidth])) {
+  background: #1a3a4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p3-name {
+  color: #ffffff;
+  font-size: 38px;
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px rgba(201,168,76,0.4);
+  font-family: 'Georgia', serif;
+}
+
+.p3-and {
+  color: #c9a84c;
+  font-size: 24px;
+  margin: 4px 0;
+}
+
+.p3-divider {
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c55, transparent);
+}
+
+.p3-invite-text {
+  color: #cce0e8;
+  font-size: 14px;
+  line-height: 2;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.p3-venue-label {
+  color: #c9a84c;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.p3-venue {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.p3-location {
+  color: #aacccc;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.p3-scroll-hint {
+  color: #c9a84c88;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-top: 16px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}

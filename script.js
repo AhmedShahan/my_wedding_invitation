@@ -1,3 +1,18 @@
+function goToPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+  const target = document.getElementById(pageId);
+  target.style.display = 'flex';
+  target.classList.add('active');
+}
+
+// ===== AUTO GO TO PAGE 3 AFTER PAGE 2 =====
+setTimeout(() => {
+  // This runs after page 2 names appear
+}, 0);
+
 const tapBtn = document.getElementById('tapBtn');
 
 tapBtn.addEventListener('click', function () {
@@ -19,6 +34,11 @@ tapBtn.addEventListener('click', function () {
     setTimeout(() => {
       document.querySelector('.reveal-center').classList.add('show');
     }, 700);
+
+    // ✅ After names show → go to Page 3
+    setTimeout(() => {
+      goToPage('page-3');
+    }, 3000);
 
   }, 1300);
 });
