@@ -1663,3 +1663,249 @@ body.light-mode .theme-toggle {
   background: rgba(245, 240, 232, 0.9);
   border-color: #c9a84c88;
 }
+
+/* ===== SAVE THE DATE ===== */
+.save-date-btn {
+  background: linear-gradient(135deg, #c9a84c, #f0d080);
+  border: none;
+  border-radius: 30px;
+  padding: 14px 32px;
+  color: #0a1a2a;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 8px;
+}
+
+.save-date-btn:active { transform: scale(0.96); }
+
+.save-date-hint {
+  color: #c9a84c66;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-align: center;
+}
+
+.calendar-popup {
+  position: fixed;
+  bottom: -340px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  background: linear-gradient(160deg, #0d1a2a, #111f30);
+  border: 1px solid #c9a84c55;
+  border-radius: 24px 24px 0 0;
+  padding: 28px 24px;
+  z-index: 99999;
+  transition: bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.6);
+}
+
+.calendar-popup.show { bottom: 0; }
+
+.calendar-popup-title {
+  color: #c9a84c;
+  font-size: 18px;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.calendar-popup-date {
+  color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.calendar-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cal-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid #c9a84c33;
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.cal-option:active {
+  background: rgba(201,168,76,0.1);
+  border-color: #c9a84c;
+}
+
+.cal-option-icon { font-size: 24px; }
+
+.cal-option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cal-option-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 1px;
+}
+
+.cal-option-desc {
+  color: #778899;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.cal-close {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid #c9a84c33;
+  border-radius: 12px;
+  color: #778899;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  transition: all 0.2s;
+}
+
+.cal-close:active { background: rgba(255,255,255,0.05); }
+
+.calendar-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 99998;
+  display: none;
+  backdrop-filter: blur(3px);
+}
+
+.calendar-overlay.show { display: block; }
+
+/* ===== SECTION 10: SAVE THE DATE PAGE ===== */
+.save-date-section {
+  background: linear-gradient(160deg, #0a0818 0%, #120d28 50%, #0a0818 100%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 40px 24px;
+}
+
+.sdt-emoji {
+  font-size: 52px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.sdt-title {
+  color: #c9a84c;
+  font-size: 32px;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  letter-spacing: 4px;
+  text-align: center;
+}
+
+.sdt-names {
+  color: #ffffff;
+  font-size: 20px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.sdt-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c66, transparent);
+}
+
+.sdt-info-box {
+  background: rgba(201, 168, 76, 0.06);
+  border: 1px solid #c9a84c33;
+  border-radius: 20px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.sdt-info-line {
+  color: #ddeeff;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-align: center;
+  font-family: 'Georgia', serif;
+}
+
+.sdt-info-sub {
+  color: #778899;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: -4px;
+}
+
+.sdt-btn {
+  background: linear-gradient(135deg, #c9a84c, #f0d080);
+  border: none;
+  border-radius: 30px;
+  padding: 16px 40px;
+  color: #0a1a2a;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 4px 24px rgba(201, 168, 76, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 4px;
+}
+
+.sdt-btn:active { transform: scale(0.96); }
+
+.sdt-hint {
+  color: #c9a84c66;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Light mode overrides for Save the Date */
+body.light-mode .save-date-section {
+  background: linear-gradient(160deg, #f0e8d8 0%, #ede0cc 100%);
+}
+body.light-mode .sdt-title { color: #8a6a1a; }
+body.light-mode .sdt-names { color: #2a1a0a; }
+body.light-mode .sdt-info-box {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: #c9a84c44;
+}
+body.light-mode .sdt-info-line { color: #2a1a0a; }
+body.light-mode .sdt-info-sub { color: #8a7a6a; }

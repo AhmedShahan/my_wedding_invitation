@@ -204,6 +204,15 @@
       <p class="cd-date-text">15 May 2026 • Friday • 2:00 PM</p>
       <p class="cd-venue">Hill View Restaurant & Party Centre</p>
       <p class="cd-location">Khadimpara, Sylhet</p>
+
+      <div class="cd-divider"></div>
+
+      <!-- Save the Date Button -->
+      <button class="save-date-btn" onclick="saveToCalendar()">
+        🔔 Save the Date
+      </button>
+      <p class="save-date-hint">Save this event to your calendar</p>
+
     </div>
 
     <!-- SECTION 6: VENUE & MAP -->
@@ -354,12 +363,78 @@
 
     </div>
 
+    <!-- SECTION 10: SAVE THE DATE -->
+    <div class="p2-section save-date-section">
+
+      <p class="sdt-emoji">💍</p>
+      <p class="sdt-title">Save the Date</p>
+      <p class="sdt-names">Shahan &amp; Jannatara</p>
+      <div class="sdt-divider"></div>
+
+      <div class="sdt-info-box">
+        <p class="sdt-info-line">📅 15 May 2026 &nbsp;•&nbsp; Friday</p>
+        <p class="sdt-info-line">🕑 2:00 PM</p>
+        <p class="sdt-info-line">📍 Hill View Restaurant &amp; Party Centre</p>
+        <p class="sdt-info-sub">Khadimpara, Sylhet</p>
+      </div>
+
+      <div class="sdt-divider"></div>
+
+      <button class="sdt-btn" onclick="saveToCalendar()">
+        🔔 Add to Calendar
+      </button>
+      <p class="sdt-hint">Choose Google, Apple or Outlook</p>
+
+    </div>
+
   </div>
 
   </div>
 
   <!-- FLOATING PARTICLES -->
   <canvas id="particleCanvas"></canvas>
+
+  <!-- CALENDAR OVERLAY -->
+  <div class="calendar-overlay" id="calOverlay" onclick="closeCalendar()"></div>
+
+  <!-- CALENDAR POPUP -->
+  <div class="calendar-popup" id="calPopup">
+    <p class="calendar-popup-title">🔔 Save the Date</p>
+    <p class="calendar-popup-date">15 May 2026 • Friday • 2:00 PM</p>
+
+    <div class="calendar-options">
+
+      <!-- Google Calendar -->
+      <a class="cal-option" id="googleCalLink" href="#" target="_blank" onclick="closeCalendar()">
+        <span class="cal-option-icon">📅</span>
+        <div class="cal-option-text">
+          <span class="cal-option-name">Google Calendar</span>
+          <span class="cal-option-desc">For Android &amp; Web</span>
+        </div>
+      </a>
+
+      <!-- Apple Calendar -->
+      <a class="cal-option" id="appleCalLink" href="#" onclick="downloadICS(); closeCalendar();">
+        <span class="cal-option-icon">🍎</span>
+        <div class="cal-option-text">
+          <span class="cal-option-name">Apple Calendar</span>
+          <span class="cal-option-desc">For iPhone &amp; Mac</span>
+        </div>
+      </a>
+
+      <!-- Outlook -->
+      <a class="cal-option" id="outlookCalLink" href="#" target="_blank" onclick="closeCalendar()">
+        <span class="cal-option-icon">📧</span>
+        <div class="cal-option-text">
+          <span class="cal-option-name">Outlook Calendar</span>
+          <span class="cal-option-desc">For Windows &amp; Office</span>
+        </div>
+      </a>
+
+    </div>
+
+    <button class="cal-close" onclick="closeCalendar()">✕ Close</button>
+  </div>
 
   <!-- THEME TOGGLE -->
   <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">

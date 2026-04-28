@@ -665,3 +665,49 @@ window.addEventListener('DOMContentLoaded', () => {
     if (btn) btn.textContent = '☀️';
   }
 });
+
+// ===== SAVE THE DATE =====
+function saveToCalendar() {
+  const title = 'Shahan & Jannatara Wedding 💍';
+  const location = 'Hill View Restaurant & Party Centre, Khadimpara, Sylhet';
+  const details = 'You are cordially invited to the wedding celebration of Shahan Ahmed & Jannatara Afsana';
+  const startDate = '20260515T080000Z';
+  const endDate = '20260515T140000Z';
+
+  const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+  document.getElementById('googleCalLink').href = googleUrl;
+
+  const outlookUrl = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(title)}&startdt=2026-05-15T14:00:00&enddt=2026-05-15T20:00:00&body=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+  document.getElementById('outlookCalLink').href = outlookUrl;
+
+  document.getElementById('calPopup').classList.add('show');
+  document.getElementById('calOverlay').classList.add('show');
+}
+
+function closeCalendar() {
+  document.getElementById('calPopup').classList.remove('show');
+  document.getElementById('calOverlay').classList.remove('show');
+}
+
+function downloadICS() {
+  const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding Invitation//EN
+BEGIN:VEVENT
+DTSTART:20260515T080000Z
+DTEND:20260515T140000Z
+SUMMARY:Shahan & Jannatara Wedding 💍
+DESCRIPTION:You are cordially invited to the wedding celebration of Shahan Ahmed & Jannatara Afsana
+LOCATION:Hill View Restaurant & Party Centre, Khadimpara, Sylhet
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'Shahan-Jannatara-Wedding.ics';
+  link.click();
+  URL.revokeObjectURL(url);
+}
