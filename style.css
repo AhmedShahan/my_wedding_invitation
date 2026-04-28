@@ -1,3 +1,4 @@
+/* ===== RESET & BASE ===== */
 * {
   margin: 0;
   padding: 0;
@@ -18,18 +19,24 @@ body {
   height: 100vh;
   position: absolute;
   top: 0; left: 0;
-  align-items: center;
-  justify-content: center;
 }
 
 .page.active {
-  display: flex;
+  display: block;
 }
 
+/* ===== PAGE 1: OPENING ===== */
 #page-opening {
   background: #0a3d4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
+}
+
+#page-opening.active {
+  display: flex;
 }
 
 .curtain {
@@ -85,36 +92,39 @@ body {
 /* ===== PAGE 2: SCROLLABLE ===== */
 #page-2 {
   display: none;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  flex-direction: column;
   height: 100vh;
-  position: absolute;
-  top: 0; left: 0;
   width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #page-2.active {
   display: flex;
 }
 
+/* Each section = full screen */
 .p2-section {
+  width: 100vw;
   min-height: 100vh;
-  width: 100%;
-  flex-shrink: 0;
+  height: 100vh;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-/* --- Photo Section --- */
+/* ===== SECTION 1: PHOTO ===== */
 .photo-section {
-  position: relative;
   overflow: hidden;
 }
 
@@ -230,12 +240,11 @@ body {
   animation: bounce 2s infinite;
 }
 
-/* --- Message Section --- */
+/* ===== SECTION 2: MESSAGE ===== */
 .message-section {
   background: #0d1a2a;
-  justify-content: center;
-  padding: 60px 30px;
   gap: 30px;
+  padding: 60px 30px;
 }
 
 .msg-content {
@@ -250,10 +259,8 @@ body {
   font-style: italic;
   letter-spacing: 0.5px;
   font-family: 'Georgia', serif;
-  position: relative;
 }
 
-/* Decorative curves like sample */
 .msg-text::before,
 .msg-text::after {
   content: '〜';
@@ -270,7 +277,6 @@ body {
   font-style: italic;
   letter-spacing: 2px;
   font-family: 'Georgia', serif;
-  margin-top: 10px;
 }
 
 .scratch-hint {
@@ -279,7 +285,130 @@ body {
   animation: bounce 2s infinite;
 }
 
-/* Reveal animation */
+/* ===== SECTION 3: SCRATCH CARD ===== */
+.scratch-section {
+  background: linear-gradient(160deg, #0a1020 0%, #0d1a2a 100%);
+  gap: 16px;
+  padding: 40px 20px;
+}
+
+.scratch-section-title {
+  color: #c9a84c;
+  font-size: 20px;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  letter-spacing: 2px;
+}
+
+.scratch-sub {
+  color: #aabbcc;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-top: -8px;
+}
+
+.scratch-card-wrap {
+  position: relative;
+  width: 300px;
+  height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(201,168,76,0.3);
+  border: 2px solid #c9a84c55;
+}
+
+.scratch-reveal-content {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #0a1a3a, #1a2a4a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 20px;
+}
+
+.sr-we {
+  color: #c9a84c;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+.sr-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c, transparent);
+}
+
+.sr-date {
+  color: #ffffff;
+  font-size: 28px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(201,168,76,0.6);
+}
+
+.sr-day {
+  color: #c9a84c;
+  font-size: 16px;
+  letter-spacing: 3px;
+}
+
+.sr-time {
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.sr-venue {
+  color: #aaccdd;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.sr-location {
+  color: #8899aa;
+  font-size: 11px;
+}
+
+#scratchCanvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  border-radius: 20px;
+}
+
+/* ===== FIREWORKS ===== */
+.fireworks-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.firework {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: firework-fly 1s ease-out forwards;
+}
+
+@keyframes firework-fly {
+  0% { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+/* ===== ANIMATIONS ===== */
 .reveal-center {
   opacity: 0;
   transform: translateY(20px);

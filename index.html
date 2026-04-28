@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Shahan & Jannata Wedding</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
+  <!-- PAGE 1: Opening curtain -->
   <div id="page-opening" class="page active">
     <div class="curtain left-curtain"></div>
     <div class="curtain right-curtain"></div>
     <div class="tap-btn" id="tapBtn">
-      <span>Tap<br />to Open</span>
+      <span>Tap<br/>to Open</span>
     </div>
   </div>
+
+  <!-- PAGE 2: Scrollable sections -->
   <div id="page-2" class="page">
 
     <!-- SECTION 1: Full photo -->
@@ -44,23 +45,41 @@
       </div>
     </div>
 
-    <!-- SECTION 2: Message + Scratch card -->
+    <!-- SECTION 2: Message -->
     <div class="p2-section message-section">
-      <div class="msg-top-curve"></div>
-
       <div class="msg-content">
         <p class="msg-text">
-          A beautiful story is about to begin... With love in our hearts and joy in our souls, we invite you to be a
-          part of our wedding celebration and bless us as we start our forever together. 🤍💜
+          A beautiful story is about to begin... With love in our hearts and joy in our souls, we invite you to be a part of our wedding celebration and bless us as we start our forever together. 🤍💜
         </p>
       </div>
-
-      <div class="scratch-label">✦ Scratch to Reveal ✦</div>
+      <div class="scratch-label">✦ Scroll to Reveal ✦</div>
       <div class="scratch-hint">↓</div>
     </div>
 
+    <!-- SECTION 3: Scratch Card -->
+    <div class="p2-section scratch-section">
+      <p class="scratch-section-title">✦ Scratch to Reveal ✦</p>
+      <p class="scratch-sub">Use your finger to scratch below</p>
+
+      <div class="scratch-card-wrap">
+        <div class="scratch-reveal-content">
+          <p class="sr-we">We're Getting Married!</p>
+          <div class="sr-divider"></div>
+          <p class="sr-date">15 May 2026</p>
+          <p class="sr-day">Friday</p>
+          <p class="sr-time">At 2:00 PM</p>
+          <div class="sr-divider"></div>
+          <p class="sr-venue">Hill View Restaurant & Party Centre</p>
+          <p class="sr-location">Khadimpara, Sylhet</p>
+        </div>
+        <canvas id="scratchCanvas"></canvas>
+      </div>
+
+      <div id="fireworks" class="fireworks-container"></div>
+    </div>
+
   </div>
+
   <script src="script.js"></script>
 </body>
-
 </html>
