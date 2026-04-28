@@ -1416,11 +1416,13 @@ body {
   gap: 16px;
 }
 
-.wall-cards {
-  display: flex;
+.wall-viewport {
   width: 300px;
   overflow: hidden;
-  position: relative;
+}
+
+.wall-cards {
+  display: flex;
   touch-action: pan-y;
 }
 
