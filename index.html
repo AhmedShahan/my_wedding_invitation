@@ -262,17 +262,53 @@
 
         <div class="rsvp-field">
           <label class="rsvp-label">Special Message (Optional)</label>
-          <textarea id="rsvpMessage" class="rsvp-input rsvp-textarea" placeholder="Share your wishes..."></textarea>
+          <textarea id="rsvpMessage" class="rsvp-input rsvp-textarea"
+            placeholder="Share your wishes..."></textarea>
         </div>
 
-        <button class="rsvp-submit" onclick="submitRSVP()">
-          📱 Send via WhatsApp
+        <button class="rsvp-submit" id="rsvpSubmitBtn" onclick="submitRSVP()">
+          ✉️ Confirm Attendance
         </button>
+
+        <p class="rsvp-success" id="rsvpSuccess">✅ Your RSVP has been submitted successfully!</p>
 
       </div>
 
       <div class="rsvp-divider"></div>
       <p class="rsvp-note">* Your information will only be shared with the bride &amp; groom</p>
+
+    </div>
+
+    <!-- SECTION 8: WISHES -->
+    <div class="p2-section wishes-section">
+
+      <p class="wishes-title">💬 Send Your Wishes</p>
+      <p class="wishes-subtitle">Share your love with the bride &amp; groom</p>
+      <div class="wishes-divider"></div>
+
+      <div class="wishes-card">
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Your Name</label>
+          <input type="text" id="wishName" class="rsvp-input" placeholder="Your full name" />
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Your Wishes</label>
+          <textarea id="wishText" class="rsvp-input wishes-textarea"
+            placeholder="Write from your heart..."></textarea>
+        </div>
+
+        <button class="wishes-submit" id="wishSubmitBtn" onclick="submitWish()">
+          💝 Send Wishes
+        </button>
+
+        <p class="rsvp-success" id="wishSuccess">✅ Your wishes have been sent successfully!</p>
+
+      </div>
+
+      <div class="wishes-divider"></div>
+      <p class="rsvp-note">* The bride &amp; groom will cherish your wishes 💍</p>
 
     </div>
 

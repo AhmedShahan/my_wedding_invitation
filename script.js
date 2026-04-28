@@ -405,6 +405,9 @@ function animateParticles() {
 
 animateParticles();
 
+// ===== GOOGLE SHEET URL =====
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxKGZpkQX92nhM-yiiIQjQZ6cwBFiyKruNvQQLPTcE3nupjIkeNVDqgwS-PV5lZ9MyHMA/exec';
+
 // ===== RSVP =====
 let rsvpChoice = '';
 
@@ -412,7 +415,6 @@ function selectChoice(choice) {
   rsvpChoice = choice;
   document.getElementById('choiceYes').classList.remove('selected-yes');
   document.getElementById('choiceNo').classList.remove('selected-no');
-
   if (choice === 'yes') {
     document.getElementById('choiceYes').classList.add('selected-yes');
   } else {
@@ -424,30 +426,73 @@ function submitRSVP() {
   const name = document.getElementById('rsvpName').value.trim();
   const message = document.getElementById('rsvpMessage').value.trim();
 
-  if (!name) {
-    alert('Please enter your name!');
-    return;
-  }
-  if (!rsvpChoice) {
-    alert('Please let us know if you will attend!');
-    return;
-  }
+  if (!name) { alert('Please enter your name!'); return; }
+  if (!rsvpChoice) { alert('Please let us know if you will attend!'); return; }
+
+  const btn = document.getElementById('rsvpSubmitBtn');
+  btn.textContent = '⏳ Submitting...';
+  btn.disabled = true;
 
   const attendance = rsvpChoice === 'yes' ? '✅ Joyfully Accepts' : '❌ Regretfully Declines';
 
-  const text = `💍 *Wedding RSVP*
-━━━━━━━━━━━━━━
-👤 Name: ${name}
-🎊 Attendance: ${attendance}
-${message ? `💬 Message: ${message}` : ''}
-━━━━━━━━━━━━━━
-*Shahan & Jannatara Wedding*
-📅 15 May 2026 | 2:00 PM
-📍 Hill View Restaurant, Sylhet`;
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'rsvp',
+      name: name,
+      attendance: attendance,
+      message: message
+    })
+  }).then(() => {
+    btn.textContent = '✉️ Confirm Attendance';
+    btn.disabled = false;
+    document.getElementById('rsvpSuccess').style.display = 'block';
+    document.getElementById('rsvpName').value = '';
+    document.getElementById('rsvpMessage').value = '';
+    rsvpChoice = '';
+    document.getElementById('choiceYes').classList.remove('selected-yes');
+    document.getElementById('choiceNo').classList.remove('selected-no');
+  }).catch(() => {
+    btn.textContent = '✉️ Confirm Attendance';
+    btn.disabled = false;
+    alert('Something went wrong! Please try again.');
+  });
+}
 
-  const encoded = encodeURIComponent(text);
-  const waNumber = '8801736666171';
-  window.open(`https://wa.me/${waNumber}?text=${encoded}`, '_blank');
+// ===== WISHES =====
+function submitWish() {
+  const name = document.getElementById('wishName').value.trim();
+  const wish = document.getElementById('wishText').value.trim();
+
+  if (!name) { alert('Please enter your name!'); return; }
+  if (!wish) { alert('Please write your wishes!'); return; }
+
+  const btn = document.getElementById('wishSubmitBtn');
+  btn.textContent = '⏳ Sending...';
+  btn.disabled = true;
+
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'wish',
+      name: name,
+      wish: wish
+    })
+  }).then(() => {
+    btn.textContent = '💝 Send Wishes';
+    btn.disabled = false;
+    document.getElementById('wishSuccess').style.display = 'block';
+    document.getElementById('wishName').value = '';
+    document.getElementById('wishText').value = '';
+  }).catch(() => {
+    btn.textContent = '💝 Send Wishes';
+    btn.disabled = false;
+    alert('Something went wrong! Please try again.');
+  });
 }
 
 // ===== GLOBAL SCROLL HINT =====
