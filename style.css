@@ -1084,3 +1084,172 @@ body {
   letter-spacing: 2px;
   font-style: italic;
 }
+
+/* ===== SECTION 7: RSVP ===== */
+.rsvp-section {
+  background: linear-gradient(160deg, #080f18 0%, #0d1a2a 100%);
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.rsvp-title {
+  color: #c9a84c;
+  font-size: 28px;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.rsvp-subtitle {
+  color: #aabbcc;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-top: -8px;
+}
+
+.rsvp-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c66, transparent);
+}
+
+.rsvp-card {
+  width: 100%;
+  max-width: 340px;
+  background: linear-gradient(160deg, #0d1a2a, #111f30);
+  border: 1px solid #c9a84c33;
+  border-radius: 20px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rsvp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rsvp-label {
+  color: #c9a84c;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.rsvp-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #c9a84c44;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Georgia', serif;
+  outline: none;
+  transition: border 0.3s;
+  width: 100%;
+}
+
+.rsvp-input:focus {
+  border-color: #c9a84c;
+  background: rgba(201,168,76,0.05);
+}
+
+.rsvp-input::placeholder {
+  color: #445566;
+}
+
+.rsvp-textarea {
+  height: 80px;
+  resize: none;
+}
+
+.rsvp-choices {
+  display: flex;
+  gap: 10px;
+}
+
+.rsvp-choice {
+  flex: 1;
+  padding: 10px 8px;
+  border-radius: 10px;
+  border: 1px solid #c9a84c44;
+  background: rgba(255,255,255,0.03);
+  color: #aabbcc;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Georgia', serif;
+}
+
+.rsvp-choice.selected-yes {
+  background: rgba(50, 200, 100, 0.15);
+  border-color: #32c864;
+  color: #32c864;
+}
+
+.rsvp-choice.selected-no {
+  background: rgba(200, 50, 50, 0.15);
+  border-color: #c83232;
+  color: #c83232;
+}
+
+.rsvp-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rsvp-submit:active {
+  transform: scale(0.97);
+}
+
+.rsvp-note {
+  color: #556677;
+  font-size: 11px;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+/* ===== GLOBAL SCROLL HINT ===== */
+.global-scroll-hint {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(201, 168, 76, 0.75);
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  pointer-events: none;
+  z-index: 200;
+  animation: bounce 2s infinite;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  display: none;
+}
+
+.global-scroll-hint.visible {
+  display: block;
+}
+
+.global-scroll-hint.hidden {
+  opacity: 0;
+}

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Shahan & Jannata Wedding</title>
+  <title>Shahan & Jannatara Wedding</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -65,12 +65,11 @@
         <div class="p2-names">
           <h1 class="p2-name">SHAHAN</h1>
           <p class="p2-and">◇</p>
-          <h1 class="p2-name">JANNATA</h1>
+          <h1 class="p2-name">JANNATARA</h1>
         </div>
         <p class="p2-tagline">Requesting the honour of your presence</p>
         <div class="p2-bottom-line"></div>
         <p class="p2-date-hint">15 . 05 . 2026</p>
-        <p class="p2-scroll-hint">↓ Scroll down</p>
       </div>
     </div>
 
@@ -235,6 +234,48 @@
 
     </div>
 
+    <!-- SECTION 7: RSVP -->
+    <div class="p2-section rsvp-section">
+
+      <p class="rsvp-title">💌 RSVP</p>
+      <p class="rsvp-subtitle">Confirm Your Attendance</p>
+      <div class="rsvp-divider"></div>
+
+      <div class="rsvp-card">
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Your Name</label>
+          <input type="text" id="rsvpName" class="rsvp-input" placeholder="Your full name" />
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Will you attend?</label>
+          <div class="rsvp-choices">
+            <button class="rsvp-choice" id="choiceYes" onclick="selectChoice('yes')">
+              ✅ Joyfully Accept
+            </button>
+            <button class="rsvp-choice" id="choiceNo" onclick="selectChoice('no')">
+              ❌ Regretfully Decline
+            </button>
+          </div>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Special Message (Optional)</label>
+          <textarea id="rsvpMessage" class="rsvp-input rsvp-textarea" placeholder="Share your wishes..."></textarea>
+        </div>
+
+        <button class="rsvp-submit" onclick="submitRSVP()">
+          📱 Send via WhatsApp
+        </button>
+
+      </div>
+
+      <div class="rsvp-divider"></div>
+      <p class="rsvp-note">* Your information will only be shared with the bride &amp; groom</p>
+
+    </div>
+
   </div>
 
   </div>
@@ -250,11 +291,13 @@
     <span class="music-note" id="musicNote">🎵</span>
   </div>
 
-  <audio id="bgMusic" loop>
+  <audio id="bgMusic">
     <source src="audio/song1.mp3" type="audio/mpeg">
   </audio>
 
   <script src="script.js"></script>
-</body>
+  <!-- GLOBAL SCROLL HINT -->
+  <div class="global-scroll-hint" id="globalScrollHint">↓ Scroll down</div>
 
+</body>
 </html>

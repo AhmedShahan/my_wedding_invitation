@@ -226,12 +226,10 @@ function loadSong(index) {
   bgMusic.play().catch(() => {});
 }
 
-// Auto play when user first taps
+// Auto play immediately when user first taps (page 1)
 document.getElementById('tapBtn').addEventListener('click', function () {
-  setTimeout(() => {
-    loadSong(currentSong);
-    musicPlayer.classList.add('visible');
-  }, 1400);
+  loadSong(currentSong);
+  musicPlayer.classList.add('visible');
 }, { once: true });
 
 // Mute / Unmute
@@ -394,3 +392,77 @@ function animateParticles() {
 }
 
 animateParticles();
+
+// ===== RSVP =====
+let rsvpChoice = '';
+
+function selectChoice(choice) {
+  rsvpChoice = choice;
+  document.getElementById('choiceYes').classList.remove('selected-yes');
+  document.getElementById('choiceNo').classList.remove('selected-no');
+
+  if (choice === 'yes') {
+    document.getElementById('choiceYes').classList.add('selected-yes');
+  } else {
+    document.getElementById('choiceNo').classList.add('selected-no');
+  }
+}
+
+function submitRSVP() {
+  const name = document.getElementById('rsvpName').value.trim();
+  const message = document.getElementById('rsvpMessage').value.trim();
+
+  if (!name) {
+    alert('Please enter your name!');
+    return;
+  }
+  if (!rsvpChoice) {
+    alert('Please let us know if you will attend!');
+    return;
+  }
+
+  const attendance = rsvpChoice === 'yes' ? '✅ Joyfully Accepts' : '❌ Regretfully Declines';
+
+  const text = `💍 *Wedding RSVP*
+━━━━━━━━━━━━━━
+👤 Name: ${name}
+🎊 Attendance: ${attendance}
+${message ? `💬 Message: ${message}` : ''}
+━━━━━━━━━━━━━━
+*Shahan & Jannatara Wedding*
+📅 15 May 2026 | 2:00 PM
+📍 Hill View Restaurant, Sylhet`;
+
+  const encoded = encodeURIComponent(text);
+  const waNumber = '8801736666171';
+  window.open(`https://wa.me/${waNumber}?text=${encoded}`, '_blank');
+}
+
+// ===== GLOBAL SCROLL HINT =====
+const scrollHint = document.getElementById('globalScrollHint');
+const page2 = document.getElementById('page-2');
+const allSections = document.querySelectorAll('.p2-section');
+const lastSection = allSections[allSections.length - 1];
+
+// Show hint when page-2 becomes active
+const tapBtnForHint = document.getElementById('tapBtn');
+tapBtnForHint.addEventListener('click', () => {
+  setTimeout(() => {
+    scrollHint.classList.add('visible');
+  }, 1400);
+}, { once: true });
+
+// Hide on last section, show on all others
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (entry.target === lastSection) {
+        scrollHint.classList.add('hidden');
+      } else {
+        scrollHint.classList.remove('hidden');
+      }
+    }
+  });
+}, { root: page2, threshold: 0.5 });
+
+allSections.forEach(section => observer.observe(section));
