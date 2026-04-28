@@ -637,3 +637,31 @@ page2.addEventListener('scroll', () => {
     loadWishes();
   }
 });
+
+// ===== DARK / LIGHT MODE =====
+let isLightMode = false;
+
+function toggleTheme() {
+  isLightMode = !isLightMode;
+  const btn = document.getElementById('themeToggle');
+  if (isLightMode) {
+    document.body.classList.add('light-mode');
+    btn.textContent = '☀️';
+    localStorage.setItem('theme', 'light');
+  } else {
+    document.body.classList.remove('light-mode');
+    btn.textContent = '🌙';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+// Remember theme on reload
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    isLightMode = true;
+    document.body.classList.add('light-mode');
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = '☀️';
+  }
+});
