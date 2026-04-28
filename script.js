@@ -166,3 +166,57 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+// ===== MUSIC PLAYER =====
+const songs = [
+  'audio/song1.mp3',
+  'audio/song2.mp3'
+];
+
+let currentSong = 0;
+let isMuted = false;
+const bgMusic = document.getElementById('bgMusic');
+const muteBtn = document.getElementById('muteBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const musicPlayer = document.getElementById('musicPlayer');
+
+// Load and play song
+function loadSong(index) {
+  bgMusic.src = songs[index];
+  bgMusic.load();
+  bgMusic.play().catch(() => {});
+}
+
+// Auto play when user first taps
+document.getElementById('tapBtn').addEventListener('click', function () {
+  setTimeout(() => {
+    loadSong(currentSong);
+    musicPlayer.classList.add('visible');
+  }, 1400);
+}, { once: true });
+
+// Mute / Unmute
+muteBtn.addEventListener('click', () => {
+  isMuted = !isMuted;
+  bgMusic.muted = isMuted;
+  muteBtn.textContent = isMuted ? '🔇' : '🔊';
+});
+
+// Next song
+nextBtn.addEventListener('click', () => {
+  currentSong = (currentSong + 1) % songs.length;
+  loadSong(currentSong);
+});
+
+// Previous song
+prevBtn.addEventListener('click', () => {
+  currentSong = (currentSong - 1 + songs.length) % songs.length;
+  loadSong(currentSong);
+});
+
+// Auto next song when current ends
+bgMusic.addEventListener('ended', () => {
+  currentSong = (currentSong + 1) % songs.length;
+  loadSong(currentSong);
+});
