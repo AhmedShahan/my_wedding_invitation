@@ -597,7 +597,7 @@ function renderWishCards() {
     const card = document.createElement('div');
     card.className = 'wall-card';
     card.innerHTML = `
-      <div class="wall-card-type">${w.type === 'wish' ? '💬 শুভেচ্ছা' : '💌 RSVP বার্তা'}</div>
+      <div class="wall-card-type">${w.type === 'wish' ? '💬 Wishes' : '💌 RSVP Message'}</div>
       <div class="wall-card-quote">"</div>
       <p class="wall-card-wish">${w.message}</p>
       <div class="wall-card-divider"></div>
