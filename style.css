@@ -424,3 +424,87 @@ body {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
 }
+
+/* ===== SECTION 4: COUNTDOWN ===== */
+.countdown-section {
+  background: linear-gradient(160deg, #080f18 0%, #0d1a2a 100%);
+  gap: 24px;
+  padding: 40px 20px;
+  flex-direction: column;
+}
+
+.cd-title {
+  color: #c9a84c;
+  font-size: 22px;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.cd-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c66, transparent);
+}
+
+.cd-boxes {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-box {
+  background: linear-gradient(160deg, #1a2a1a, #0d1a0d);
+  border: 1px solid #2a4a2a;
+  border-radius: 10px;
+  width: 72px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4),
+              inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.cd-num {
+  color: #ffffff;
+  font-size: 30px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(201,168,76,0.3);
+}
+
+.cd-label {
+  color: #c9a84c;
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-family: sans-serif;
+}
+
+.cd-date-text {
+  color: #c9a84c;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-align: center;
+  font-style: italic;
+}
+
+.cd-venue {
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cd-location {
+  color: #8899aa;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 1px;
+}
