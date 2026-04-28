@@ -561,7 +561,143 @@ body {
   letter-spacing: 1px;
 }
 
-/* ===== SECTION 5: VENUE & MAP ===== */
+/* ===== SECTION 5: FAMILY ===== */
+.family-section {
+  background: linear-gradient(160deg, #080f18 0%, #0d1a2a 100%);
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.family-title {
+  color: #c9a84c;
+  font-size: 22px;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.family-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c66, transparent);
+}
+
+/* Card */
+.family-card {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #c9a84c33;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.family-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+}
+
+.groom-top {
+  background: linear-gradient(135deg, #1a3a5a, #0d2a4a);
+  border-bottom: 1px solid #c9a84c33;
+}
+
+.bride-top {
+  background: linear-gradient(135deg, #3a1a3a, #2a0d2a);
+  border-bottom: 1px solid #c9a84c33;
+}
+
+.family-icon {
+  font-size: 22px;
+}
+
+.family-side-label {
+  color: #c9a84c;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Georgia', serif;
+}
+
+.family-card-body {
+  background: linear-gradient(160deg, #0d1a2a, #111f30);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.family-main-name {
+  color: #ffffff;
+  font-size: 20px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(201,168,76,0.3);
+}
+
+.family-relation {
+  color: #c9a84c;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+.family-parents {
+  color: #cce0ee;
+  font-size: 15px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 1px;
+}
+
+.family-and-text {
+  color: #c9a84c;
+  font-size: 14px;
+}
+
+.family-inner-divider {
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c44, transparent);
+  margin: 8px 0;
+}
+
+.family-address {
+  color: #8899aa;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+}
+
+/* Ring between cards */
+.family-heart {
+  font-size: 26px;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.family-bottom-text {
+  color: #c9a84c88;
+  font-size: 13px;
+  font-style: italic;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* ===== SECTION 6: VENUE & MAP ===== */
 .venue-section {
   background: linear-gradient(160deg, #080f18 0%, #0d1a2a 100%);
   flex-direction: column;
