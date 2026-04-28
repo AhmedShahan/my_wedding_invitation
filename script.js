@@ -220,3 +220,139 @@ bgMusic.addEventListener('ended', () => {
   currentSong = (currentSong + 1) % songs.length;
   loadSong(currentSong);
 });
+
+// ===== FLOATING PARTICLES =====
+const particleCanvas = document.getElementById('particleCanvas');
+const pCtx = particleCanvas.getContext('2d');
+
+particleCanvas.width = window.innerWidth;
+particleCanvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  particleCanvas.width = window.innerWidth;
+  particleCanvas.height = window.innerHeight;
+});
+
+const particles = [];
+
+// Particle types
+const types = ['gold', 'star', 'petal'];
+
+function randomBetween(a, b) {
+  return a + Math.random() * (b - a);
+}
+
+function createParticle() {
+  const type = types[Math.floor(Math.random() * types.length)];
+  return {
+    type,
+    x: randomBetween(0, particleCanvas.width),
+    y: randomBetween(-20, -100),
+    size: type === 'petal' ? randomBetween(8, 16) : randomBetween(2, 5),
+    speedY: randomBetween(0.5, 1.8),
+    speedX: randomBetween(-0.5, 0.5),
+    rotation: randomBetween(0, 360),
+    rotationSpeed: randomBetween(-1.5, 1.5),
+    opacity: randomBetween(0.4, 0.9),
+    swing: randomBetween(0.3, 0.8),
+    swingSpeed: randomBetween(0.01, 0.03),
+    swingAngle: randomBetween(0, Math.PI * 2),
+  };
+}
+
+// Initialize particles
+for (let i = 0; i < 60; i++) {
+  const p = createParticle();
+  p.y = randomBetween(0, particleCanvas.height); // spread initially
+  particles.push(p);
+}
+
+function drawPetal(ctx, x, y, size, rotation, opacity) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate((rotation * Math.PI) / 180);
+  ctx.globalAlpha = opacity;
+
+  // Rose petal shape
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(size, -size, size * 2, size, 0, size * 2);
+  ctx.bezierCurveTo(-size * 2, size, -size, -size, 0, 0);
+
+  // Pink/red gradient for petal
+  const gradient = ctx.createRadialGradient(0, size, 0, 0, size, size * 2);
+  gradient.addColorStop(0, 'rgba(255, 182, 193, 0.9)');
+  gradient.addColorStop(0.5, 'rgba(255, 105, 135, 0.7)');
+  gradient.addColorStop(1, 'rgba(200, 60, 100, 0.4)');
+
+  ctx.fillStyle = gradient;
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawGoldDust(ctx, x, y, size, opacity) {
+  ctx.save();
+  ctx.globalAlpha = opacity;
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(240, 208, 128, ${opacity})`;
+  ctx.fill();
+
+  // Glow effect
+  ctx.beginPath();
+  ctx.arc(x, y, size * 2, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(201, 168, 76, ${opacity * 0.3})`;
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawStar(ctx, x, y, size, rotation, opacity) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate((rotation * Math.PI) / 180);
+  ctx.globalAlpha = opacity;
+
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+    const px = Math.cos(angle) * size;
+    const py = Math.sin(angle) * size;
+    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.fillStyle = `rgba(255, 223, 100, ${opacity})`;
+  ctx.shadowColor = 'rgba(255, 200, 50, 0.8)';
+  ctx.shadowBlur = 6;
+  ctx.fill();
+  ctx.restore();
+}
+
+function animateParticles() {
+  pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+
+  particles.forEach((p, i) => {
+    // Swing motion
+    p.swingAngle += p.swingSpeed;
+    p.x += Math.sin(p.swingAngle) * p.swing + p.speedX;
+    p.y += p.speedY;
+    p.rotation += p.rotationSpeed;
+
+    // Draw based on type
+    if (p.type === 'petal') {
+      drawPetal(pCtx, p.x, p.y, p.size, p.rotation, p.opacity);
+    } else if (p.type === 'gold') {
+      drawGoldDust(pCtx, p.x, p.y, p.size, p.opacity);
+    } else if (p.type === 'star') {
+      drawStar(pCtx, p.x, p.y, p.size, p.rotation, p.opacity);
+    }
+
+    // Reset when out of screen
+    if (p.y > particleCanvas.height + 30) {
+      particles[i] = createParticle();
+    }
+  });
+
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
