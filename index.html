@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Shahan & Jannata Wedding</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <!-- LOADING SCREEN -->
+  <div id="loadingScreen">
+    <div class="loading-content">
+
+      <div class="loading-rings">
+        <div class="ring ring1"></div>
+        <div class="ring ring2"></div>
+        <div class="ring ring3"></div>
+      </div>
+
+      <div class="loading-center">
+        <p class="loading-initial">S</p>
+        <p class="loading-and">♥</p>
+        <p class="loading-initial">J</p>
+      </div>
+
+      <p class="loading-title">Shahan & Jannatara</p>
+      <p class="loading-subtitle">— Wedding Invitation —</p>
+
+      <div class="loading-bar-wrap">
+        <div class="loading-bar" id="loadingBar"></div>
+      </div>
+
+      <p class="loading-text" id="loadingText">Loading your invitation...</p>
+
+    </div>
+  </div>
 
   <!-- PAGE 1: Opening curtain -->
   <div id="page-opening" class="page active">
     <div class="curtain left-curtain"></div>
     <div class="curtain right-curtain"></div>
     <div class="tap-btn" id="tapBtn">
-      <span>Tap<br/>to Open</span>
+      <span>Tap<br />to Open</span>
     </div>
   </div>
 
@@ -49,7 +78,8 @@
     <div class="p2-section message-section">
       <div class="msg-content">
         <p class="msg-text">
-          A beautiful story is about to begin... With love in our hearts and joy in our souls, we invite you to be a part of our wedding celebration and bless us as we start our forever together. 🤍💜
+          A beautiful story is about to begin... With love in our hearts and joy in our souls, we invite you to be a
+          part of our wedding celebration and bless us as we start our forever together. 🤍💜
         </p>
       </div>
       <div class="scratch-label">✦ Scroll to Reveal ✦</div>
@@ -193,42 +223,38 @@
       <div class="venue-map-wrap">
         <iframe
           src="https://maps.google.com/maps?q=Hill+View+Restaurant+Party+Centre+Khadimpara+Sylhet&output=embed&z=15"
-          width="100%"
-          height="100%"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
 
-      <a class="venue-open-btn" 
-         href="https://maps.google.com/?q=Hill+View+Restaurant+Party+Centre+Khadimpara+Sylhet" 
-         target="_blank">
+      <a class="venue-open-btn" href="https://maps.google.com/?q=Hill+View+Restaurant+Party+Centre+Khadimpara+Sylhet"
+        target="_blank">
         🗺️ Open in Google Maps
       </a>
 
     </div>
 
-    </div>
+  </div>
 
   </div>
 
-<!-- FLOATING PARTICLES -->
-<canvas id="particleCanvas"></canvas>
+  <!-- FLOATING PARTICLES -->
+  <canvas id="particleCanvas"></canvas>
 
-<!-- MUSIC PLAYER -->
-<div class="music-player" id="musicPlayer">
-  <button class="music-btn" id="prevBtn">⏮</button>
-  <button class="music-btn mute-btn" id="muteBtn">🔊</button>
-  <button class="music-btn" id="nextBtn">⏭</button>
-  <span class="music-note" id="musicNote">🎵</span>
-</div>
+  <!-- MUSIC PLAYER -->
+  <div class="music-player" id="musicPlayer">
+    <button class="music-btn" id="prevBtn">⏮</button>
+    <button class="music-btn mute-btn" id="muteBtn">🔊</button>
+    <button class="music-btn" id="nextBtn">⏭</button>
+    <span class="music-note" id="musicNote">🎵</span>
+  </div>
 
-<audio id="bgMusic" loop>
-  <source src="audio/song1.mp3" type="audio/mpeg">
-</audio>
+  <audio id="bgMusic" loop>
+    <source src="audio/song1.mp3" type="audio/mpeg">
+  </audio>
 
   <script src="script.js"></script>
 </body>
+
 </html>
