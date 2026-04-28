@@ -64,6 +64,18 @@ function goToPage(pageId) {
   const target = document.getElementById(pageId);
   target.style.display = 'flex';
   target.classList.add('active');
+
+  // Show scroll hint when page-2 activates
+  const hint = document.getElementById('globalScrollHint');
+  if (hint) {
+    if (pageId === 'page-2') {
+      hint.classList.add('visible');
+      hint.classList.remove('hidden');
+    } else {
+      hint.classList.remove('visible');
+      hint.classList.add('hidden');
+    }
+  }
 }
 
 // ===== SCRATCH CARD =====
@@ -442,27 +454,19 @@ ${message ? `💬 Message: ${message}` : ''}
 const scrollHint = document.getElementById('globalScrollHint');
 const page2 = document.getElementById('page-2');
 const allSections = document.querySelectorAll('.p2-section');
-const lastSection = allSections[allSections.length - 1];
+const lastSectionIndex = allSections.length - 1;
 
-// Show hint when page-2 becomes active
-const tapBtnForHint = document.getElementById('tapBtn');
-tapBtnForHint.addEventListener('click', () => {
-  setTimeout(() => {
+// Hide on last section, show on all others via scroll
+page2.addEventListener('scroll', () => {
+  const sectionHeight = page2.clientHeight;
+  const scrollTop = page2.scrollTop;
+  const currentIndex = Math.round(scrollTop / sectionHeight);
+
+  if (currentIndex >= lastSectionIndex) {
+    scrollHint.classList.add('hidden');
+    scrollHint.classList.remove('visible');
+  } else {
+    scrollHint.classList.remove('hidden');
     scrollHint.classList.add('visible');
-  }, 1400);
-}, { once: true });
-
-// Hide on last section, show on all others
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      if (entry.target === lastSection) {
-        scrollHint.classList.add('hidden');
-      } else {
-        scrollHint.classList.remove('hidden');
-      }
-    }
-  });
-}, { root: page2, threshold: 0.5 });
-
-allSections.forEach(section => observer.observe(section));
+  }
+});
