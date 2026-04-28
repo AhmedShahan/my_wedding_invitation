@@ -406,7 +406,7 @@ function animateParticles() {
 animateParticles();
 
 // ===== GOOGLE SHEET URL =====
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxKGZpkQX92nhM-yiiIQjQZ6cwBFiyKruNvQQLPTcE3nupjIkeNVDqgwS-PV5lZ9MyHMA/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzbEWhnLrC2QudEpNBgsZSAn09V21i3-y4ruRIe6pn32JaRVfQdtcrchpYgIm6o_LT-TQ/exec';
 
 // ===== RSVP =====
 let rsvpChoice = '';
@@ -517,7 +517,7 @@ page2.addEventListener('scroll', () => {
 });
 
 // ===== WISHES WALL =====
-const SHEET_READ_URL = 'https://script.google.com/macros/s/AKfycbxM4ASm7CxL1IyaCFnFH5L9yo2umCI35gMhRF19zHYpZLatQ1Vrz0oKkWe_HLtbLWwacg/exec';
+const SHEET_READ_URL = 'https://script.google.com/macros/s/AKfycbzbEWhnLrC2QudEpNBgsZSAn09V21i3-y4ruRIe6pn32JaRVfQdtcrchpYgIm6o_LT-TQ/exec';
 let currentWishIndex = 0;
 let wishesData = [];
 let touchStartX = 0;
@@ -537,11 +537,45 @@ function loadWishes() {
     .then(res => res.json())
     .then(data => {
       loading.style.display = 'none';
-      if (!data.wishes || data.wishes.length === 0) {
+
+      // Combine wishes + RSVP messages
+      const allMessages = [];
+
+      // Add wishes
+      if (data.wishes && data.wishes.length > 0) {
+        data.wishes.forEach(w => {
+          allMessages.push({
+            name: w.name,
+            message: w.wish,
+            date: w.date,
+            type: 'wish'
+          });
+        });
+      }
+
+      // Add RSVP messages (only if message exists)
+      if (data.rsvps && data.rsvps.length > 0) {
+        data.rsvps.forEach(r => {
+          if (r.message && r.message.trim()) {
+            allMessages.push({
+              name: r.name,
+              message: r.message,
+              date: r.date,
+              type: 'rsvp'
+            });
+          }
+        });
+      }
+
+      if (allMessages.length === 0) {
         empty.style.display = 'flex';
         return;
       }
-      wishesData = data.wishes.reverse(); // newest first
+
+      // Shuffle so wishes and rsvp mix together
+      allMessages.sort(() => Math.random() - 0.5);
+
+      wishesData = allMessages;
       currentWishIndex = 0;
       renderWishCards();
       wrap.style.display = 'flex';
@@ -563,11 +597,12 @@ function renderWishCards() {
     const card = document.createElement('div');
     card.className = 'wall-card';
     card.innerHTML = `
+      <div class="wall-card-type">${w.type === 'wish' ? '💬 শুভেচ্ছা' : '💌 RSVP বার্তা'}</div>
       <div class="wall-card-quote">"</div>
-      <p class="wall-card-wish">${w.wish}</p>
+      <p class="wall-card-wish">${w.message}</p>
       <div class="wall-card-divider"></div>
       <p class="wall-card-name">— ${w.name}</p>
-      <p class="wall-card-date">${w.date || ''}</p>
+      <p class="wall-card-date">${w.date}</p>
     `;
     container.appendChild(card);
 
@@ -721,39 +756,39 @@ function updateClosingPage() {
   const weddingStr = weddingDate.toDateString();
 
   const beforeEl = document.getElementById('closingBefore');
-  const todayEl  = document.getElementById('closingToday');
-  const afterEl  = document.getElementById('closingAfter');
+  const todayEl = document.getElementById('closingToday');
+  const afterEl = document.getElementById('closingAfter');
 
   if (!beforeEl) return;
 
   if (todayStr === weddingStr) {
     beforeEl.style.display = 'none';
-    todayEl.style.display  = 'flex';
-    afterEl.style.display  = 'none';
+    todayEl.style.display = 'flex';
+    afterEl.style.display = 'none';
 
   } else if (now < weddingDate) {
     beforeEl.style.display = 'flex';
-    todayEl.style.display  = 'none';
-    afterEl.style.display  = 'none';
+    todayEl.style.display = 'none';
+    afterEl.style.display = 'none';
 
     const diff = weddingDate - now;
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const el = document.getElementById('closingDaysLeft');
-    if (days === 0)      el.textContent = '🎊 Tomorrow is the Special Day!';
+    if (days === 0) el.textContent = '🎊 Tomorrow is the Special Day!';
     else if (days === 1) el.textContent = '✨ Just 1 day to go!';
-    else                 el.textContent = `✨ Just ${days} days to go!`;
+    else el.textContent = `✨ Just ${days} days to go!`;
 
   } else {
     beforeEl.style.display = 'none';
-    todayEl.style.display  = 'none';
-    afterEl.style.display  = 'flex';
+    todayEl.style.display = 'none';
+    afterEl.style.display = 'flex';
 
     const diff = now - weddingDate;
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const el = document.getElementById('closingDaysSince');
-    if (days === 0)      el.textContent = '💍 Today is our wedding day!';
+    if (days === 0) el.textContent = '💍 Today is our wedding day!';
     else if (days === 1) el.textContent = '💕 1 day of our beautiful marriage!';
-    else                 el.textContent = `💕 ${days} days of our beautiful marriage!`;
+    else el.textContent = `💕 ${days} days of our beautiful marriage!`;
   }
 }
 

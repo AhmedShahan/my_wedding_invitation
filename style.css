@@ -2208,3 +2208,11 @@ body.light-mode .closing-signature {
   background: rgba(201, 168, 76, 0.06);
   border-color: #c9a84c44;
 }
+
+.wall-card-type {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #c9a84c88;
+  text-align: center;
+  text-transform: uppercase;
+}
