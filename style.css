@@ -1338,3 +1338,184 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(50, 200, 100, 0.2);
 }
+
+/* ===== WISHES WALL ===== */
+.wishes-wall-section {
+  background: linear-gradient(160deg, #0d0a18 0%, #1a1030 100%);
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.wall-title {
+  color: #c9a84c;
+  font-size: 28px;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.wall-subtitle {
+  color: #aabbcc;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-top: -8px;
+}
+
+.wall-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c66, transparent);
+}
+
+.wall-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #c9a84c;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.wall-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #c9a84c33;
+  border-top-color: #c9a84c;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.wall-empty {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #556677;
+  font-size: 13px;
+  text-align: center;
+}
+
+.wall-empty p:first-child {
+  font-size: 40px;
+}
+
+.wall-cards-wrap {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+}
+
+.wall-cards {
+  display: flex;
+  width: 300px;
+  overflow: hidden;
+  position: relative;
+  touch-action: pan-y;
+}
+
+.wall-card {
+  min-width: 300px;
+  width: 300px;
+  flex-shrink: 0;
+  background: linear-gradient(160deg, #1a1535, #0d1a2a);
+  border: 1px solid #c9a84c33;
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.wall-card-quote {
+  color: #c9a84c;
+  font-size: 40px;
+  line-height: 0.5;
+  font-family: 'Georgia', serif;
+  opacity: 0.5;
+}
+
+.wall-card-wish {
+  color: #ddeeff;
+  font-size: 15px;
+  line-height: 1.8;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.5px;
+}
+
+.wall-card-divider {
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c55, transparent);
+  margin: 0 auto;
+}
+
+.wall-card-name {
+  color: #c9a84c;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-family: 'Georgia', serif;
+}
+
+.wall-card-date {
+  color: #445566;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.wall-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.wall-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.wall-dot.active {
+  background: #c9a84c;
+  width: 20px;
+  border-radius: 4px;
+}
+
+.wall-swipe-hint {
+  color: #c9a84c55;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.wall-refresh-btn {
+  background: transparent;
+  border: 1px solid #c9a84c55;
+  border-radius: 30px;
+  padding: 10px 24px;
+  color: #c9a84c;
+  font-size: 13px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-family: 'Georgia', serif;
+  transition: all 0.3s;
+}
+
+.wall-refresh-btn:active {
+  background: rgba(201,168,76,0.1);
+}

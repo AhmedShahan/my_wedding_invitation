@@ -312,6 +312,46 @@
 
     </div>
 
+    <!-- SECTION 9: WISHES WALL -->
+    <div class="p2-section wishes-wall-section">
+
+      <p class="wall-title">💝 Wishes Wall</p>
+      <p class="wall-subtitle">All the love from your guests</p>
+      <div class="wall-divider"></div>
+
+      <!-- Loading state -->
+      <div class="wall-loading" id="wallLoading">
+        <div class="wall-spinner"></div>
+        <p>Loading wishes...</p>
+      </div>
+
+      <!-- Empty state -->
+      <div class="wall-empty" id="wallEmpty">
+        <p>💌</p>
+        <p>No wishes yet</p>
+        <p>Be the first to wish!</p>
+      </div>
+
+      <!-- Cards container -->
+      <div class="wall-cards-wrap" id="wallCardsWrap">
+        <div class="wall-cards" id="wallCards"></div>
+
+        <!-- Navigation dots -->
+        <div class="wall-dots" id="wallDots"></div>
+
+        <!-- Swipe hint -->
+        <p class="wall-swipe-hint">← swipe to navigate →</p>
+      </div>
+
+      <div class="wall-divider"></div>
+
+      <!-- Refresh button -->
+      <button class="wall-refresh-btn" onclick="loadWishes()">
+        🔄 Refresh Wishes
+      </button>
+
+    </div>
+
   </div>
 
   </div>

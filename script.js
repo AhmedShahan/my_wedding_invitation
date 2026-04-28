@@ -235,7 +235,7 @@ const musicPlayer = document.getElementById('musicPlayer');
 function loadSong(index) {
   bgMusic.src = songs[index];
   bgMusic.load();
-  bgMusic.play().catch(() => {});
+  bgMusic.play().catch(() => { });
 }
 
 // Auto play immediately when user first taps (page 1)
@@ -513,5 +513,127 @@ page2.addEventListener('scroll', () => {
   } else {
     scrollHint.classList.remove('hidden');
     scrollHint.classList.add('visible');
+  }
+});
+
+// ===== WISHES WALL =====
+const SHEET_READ_URL = 'https://script.google.com/macros/s/AKfycbxM4ASm7CxL1IyaCFnFH5L9yo2umCI35gMhRF19zHYpZLatQ1Vrz0oKkWe_HLtbLWwacg/exec';
+let currentWishIndex = 0;
+let wishesData = [];
+let touchStartX = 0;
+let touchEndX = 0;
+let wishesLoaded = false;
+
+function loadWishes() {
+  const loading = document.getElementById('wallLoading');
+  const empty = document.getElementById('wallEmpty');
+  const wrap = document.getElementById('wallCardsWrap');
+
+  loading.style.display = 'flex';
+  empty.style.display = 'none';
+  wrap.style.display = 'none';
+
+  fetch(SHEET_READ_URL)
+    .then(res => res.json())
+    .then(data => {
+      loading.style.display = 'none';
+      if (!data.wishes || data.wishes.length === 0) {
+        empty.style.display = 'flex';
+        return;
+      }
+      wishesData = data.wishes.reverse(); // newest first
+      currentWishIndex = 0;
+      renderWishCards();
+      wrap.style.display = 'flex';
+    })
+    .catch(() => {
+      loading.style.display = 'none';
+      empty.style.display = 'flex';
+    });
+}
+
+function renderWishCards() {
+  const container = document.getElementById('wallCards');
+  const dotsContainer = document.getElementById('wallDots');
+
+  container.innerHTML = '';
+  dotsContainer.innerHTML = '';
+
+  wishesData.forEach((w, i) => {
+    const card = document.createElement('div');
+    card.className = 'wall-card';
+    card.innerHTML = `
+      <div class="wall-card-quote">"</div>
+      <p class="wall-card-wish">${w.wish}</p>
+      <div class="wall-card-divider"></div>
+      <p class="wall-card-name">— ${w.name}</p>
+      <p class="wall-card-date">${w.date || ''}</p>
+    `;
+    container.appendChild(card);
+
+    const dot = document.createElement('div');
+    dot.className = 'wall-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToWish(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  updateWishPosition();
+  setupWishSwipe();
+}
+
+function goToWish(index) {
+  currentWishIndex = index;
+  updateWishPosition();
+}
+
+function updateWishPosition() {
+  const container = document.getElementById('wallCards');
+  const dots = document.querySelectorAll('.wall-dot');
+  const cardWidth = document.querySelector('.wall-card')
+    ? document.querySelector('.wall-card').offsetWidth
+    : 300;
+  container.style.transform = `translateX(-${currentWishIndex * cardWidth}px)`;
+  container.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+  dots.forEach((d, i) => d.classList.toggle('active', i === currentWishIndex));
+}
+
+function setupWishSwipe() {
+  const container = document.getElementById('wallCards');
+
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && currentWishIndex < wishesData.length - 1) currentWishIndex++;
+      else if (diff < 0 && currentWishIndex > 0) currentWishIndex--;
+      updateWishPosition();
+    }
+  }, { passive: true });
+
+  container.addEventListener('mousedown', (e) => { touchStartX = e.clientX; });
+  container.addEventListener('mouseup', (e) => {
+    touchEndX = e.clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && currentWishIndex < wishesData.length - 1) currentWishIndex++;
+      else if (diff < 0 && currentWishIndex > 0) currentWishIndex--;
+      updateWishPosition();
+    }
+  });
+}
+
+// Auto-load when Wishes Wall section scrolls into view
+page2.addEventListener('scroll', () => {
+  if (wishesLoaded) return;
+  const wallSection = document.querySelector('.wishes-wall-section');
+  if (!wallSection) return;
+  const rect = wallSection.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    wishesLoaded = true;
+    loadWishes();
   }
 });
