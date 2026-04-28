@@ -1909,3 +1909,166 @@ body.light-mode .sdt-info-box {
 }
 body.light-mode .sdt-info-line { color: #2a1a0a; }
 body.light-mode .sdt-info-sub { color: #8a7a6a; }
+
+/* ===== SECTION 11: CLOSING PAGE ===== */
+.closing-section {
+  background: linear-gradient(160deg, #080f18 0%, #0d1a2a 100%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 40px 24px 60px;
+  overflow-y: auto;
+}
+
+.closing-content {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.closing-state {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.closing-rings {
+  font-size: 52px;
+  animation: float-ring 3s ease-in-out infinite;
+}
+
+@keyframes float-ring {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+.closing-poem {
+  color: #ddeeff;
+  font-size: 16px;
+  line-height: 2;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.5px;
+}
+
+.closing-today-title {
+  color: #c9a84c;
+  font-size: 24px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 2px;
+  animation: glow-text 2s infinite;
+}
+
+@keyframes glow-text {
+  0%, 100% { text-shadow: 0 0 10px rgba(201,168,76,0.4); }
+  50% { text-shadow: 0 0 25px rgba(201,168,76,0.9); }
+}
+
+.closing-divider {
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c55, transparent);
+}
+
+.closing-countdown-text,
+.closing-married-text {
+  color: #c9a84c;
+  font-size: 18px;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.closing-dua {
+  color: #aabbcc;
+  font-size: 14px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.closing-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #c9a84c22;
+  border-radius: 16px;
+  width: 100%;
+  background: rgba(201,168,76,0.03);
+}
+
+.closing-sig-text {
+  color: #aabbcc;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+.closing-sig-names {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.closing-sig-name {
+  color: #ffffff;
+  font-size: 26px;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  text-shadow: 0 0 15px rgba(201,168,76,0.4);
+}
+
+.closing-sig-heart {
+  color: #c9a84c;
+  font-size: 20px;
+  animation: heartbeat 1.5s infinite;
+}
+
+.closing-sig-date {
+  color: #c9a84c;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.closing-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.closing-bottom-line {
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c44, transparent);
+}
+
+.closing-footer {
+  color: #334455;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+/* Light mode */
+body.light-mode .closing-section {
+  background: linear-gradient(160deg, #f0e8d8 0%, #ede0cc 100%);
+}
+body.light-mode .closing-poem { color: #2a1a0a; }
+body.light-mode .closing-dua { color: #4a3a2a; }
+body.light-mode .closing-sig-name { color: #1a0a00; }
+body.light-mode .closing-signature {
+  background: rgba(201,168,76,0.06);
+  border-color: #c9a84c44;
+}

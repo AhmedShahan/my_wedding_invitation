@@ -711,3 +711,51 @@ END:VCALENDAR`;
   link.click();
   URL.revokeObjectURL(url);
 }
+
+// ===== DYNAMIC CLOSING PAGE =====
+function updateClosingPage() {
+  const weddingDate = new Date('2026-05-15T14:00:00');
+  const now = new Date();
+
+  const todayStr = now.toDateString();
+  const weddingStr = weddingDate.toDateString();
+
+  const beforeEl = document.getElementById('closingBefore');
+  const todayEl  = document.getElementById('closingToday');
+  const afterEl  = document.getElementById('closingAfter');
+
+  if (!beforeEl) return;
+
+  if (todayStr === weddingStr) {
+    beforeEl.style.display = 'none';
+    todayEl.style.display  = 'flex';
+    afterEl.style.display  = 'none';
+
+  } else if (now < weddingDate) {
+    beforeEl.style.display = 'flex';
+    todayEl.style.display  = 'none';
+    afterEl.style.display  = 'none';
+
+    const diff = weddingDate - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const el = document.getElementById('closingDaysLeft');
+    if (days === 0)      el.textContent = '🎊 Tomorrow is the Special Day!';
+    else if (days === 1) el.textContent = '✨ Just 1 day to go!';
+    else                 el.textContent = `✨ Just ${days} days to go!`;
+
+  } else {
+    beforeEl.style.display = 'none';
+    todayEl.style.display  = 'none';
+    afterEl.style.display  = 'flex';
+
+    const diff = now - weddingDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const el = document.getElementById('closingDaysSince');
+    if (days === 0)      el.textContent = '💍 Today is our wedding day!';
+    else if (days === 1) el.textContent = '💕 1 day of our beautiful marriage!';
+    else                 el.textContent = `💕 ${days} days of our beautiful marriage!`;
+  }
+}
+
+updateClosingPage();
+setInterval(updateClosingPage, 60000);
