@@ -35,10 +35,11 @@ tapBtn.addEventListener('click', function () {
       document.querySelector('.reveal-center').classList.add('show');
     }, 700);
 
-    // ✅ After names show → go to Page 3
-    setTimeout(() => {
-      goToPage('page-3');
-    }, 3000);
+    // Page 2 is complete; do not auto-navigate away.
+    // Remove or change the code below if you add a next page later.
+    // setTimeout(() => {
+    //   goToPage('page-3');
+    // }, 3000);
 
   }, 1300);
 });
