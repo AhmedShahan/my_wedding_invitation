@@ -287,34 +287,71 @@ body {
 
 /* ===== SECTION 3: SCRATCH CARD ===== */
 .scratch-section {
-  background: linear-gradient(160deg, #0a1020 0%, #0d1a2a 100%);
-  gap: 16px;
+  background: linear-gradient(160deg, #0d1535 0%, #1a2550 100%);
+  flex-direction: column;
+  gap: 30px;
   padding: 40px 20px;
+  overflow: hidden;
+  position: relative;
 }
 
-.scratch-section-title {
+/* Decorative stars floating */
+.scratch-stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  pointer-events: none;
+}
+
+.ss {
+  position: absolute;
   color: #c9a84c;
-  font-size: 20px;
-  font-style: italic;
+  font-size: 14px;
+  opacity: 0.5;
+  animation: twinkle 3s infinite;
+}
+
+.ss1 { top: 12%; left: 10%; animation-delay: 0s; }
+.ss2 { top: 20%; right: 12%; animation-delay: 0.8s; }
+.ss3 { bottom: 25%; left: 8%; animation-delay: 1.4s; }
+.ss4 { bottom: 30%; right: 10%; animation-delay: 0.4s; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.4); }
+}
+
+/* Big bold title */
+.scratch-big-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  z-index: 1;
+}
+
+.scratch-big-title span {
   font-family: 'Georgia', serif;
-  letter-spacing: 2px;
+  font-size: 44px;
+  font-weight: bold;
+  font-style: italic;
+  color: #c9a84c;
+  letter-spacing: 3px;
+  line-height: 1.15;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(201,168,76,0.4);
 }
 
-.scratch-sub {
-  color: #aabbcc;
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-top: -8px;
-}
-
+/* Gold scratch card */
 .scratch-card-wrap {
   position: relative;
   width: 300px;
-  height: 280px;
-  border-radius: 20px;
+  height: 200px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(201,168,76,0.3);
-  border: 2px solid #c9a84c55;
+  box-shadow: 0 8px 40px rgba(201,168,76,0.35);
+  z-index: 1;
 }
 
 .scratch-reveal-content {
@@ -326,14 +363,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   text-align: center;
   padding: 20px;
 }
 
 .sr-we {
   color: #c9a84c;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 2px;
   font-style: italic;
 }
@@ -346,7 +383,7 @@ body {
 
 .sr-date {
   color: #ffffff;
-  font-size: 28px;
+  font-size: 26px;
   font-family: 'Georgia', serif;
   font-weight: bold;
   text-shadow: 0 0 20px rgba(201,168,76,0.6);
@@ -354,38 +391,53 @@ body {
 
 .sr-day {
   color: #c9a84c;
-  font-size: 16px;
+  font-size: 15px;
   letter-spacing: 3px;
 }
 
 .sr-time {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 2px;
 }
 
 .sr-venue {
   color: #aaccdd;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 1px;
   margin-top: 4px;
 }
 
 .sr-location {
   color: #8899aa;
-  font-size: 11px;
+  font-size: 10px;
 }
 
+/* Gold scratch surface via canvas */
 #scratchCanvas {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
   cursor: crosshair;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 
-/* ===== FIREWORKS ===== */
+/* Label shown on gold surface */
+.scratch-card-label {
+  position: absolute;
+  bottom: 14px;
+  width: 100%;
+  text-align: center;
+  color: rgba(100, 70, 0, 0.6);
+  font-size: 13px;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Fireworks */
 .fireworks-container {
   position: fixed;
   top: 0; left: 0;

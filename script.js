@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
   const ctx = canvas.getContext('2d');
 
   canvas.width = 300;
-  canvas.height = 280;
+  canvas.height = 200;
 
   // Gold scratch surface
   const gradient = ctx.createLinearGradient(0, 0, 300, 280);
@@ -49,9 +49,9 @@ window.addEventListener('load', () => {
   ctx.fillStyle = 'rgba(100, 70, 0, 0.5)';
   ctx.font = 'bold 16px Georgia';
   ctx.textAlign = 'center';
-  ctx.fillText('✦ Scratch Here ✦', 150, 130);
+  ctx.fillText('✦ Scratch Here ✦', 150, 95);
   ctx.font = '12px Georgia';
-  ctx.fillText('Reveal the surprise inside', 150, 155);
+  ctx.fillText('Reveal the surprise inside', 150, 118);
 
   let isScratching = false;
   let fireworksDone = false;
