@@ -82,14 +82,130 @@ body {
   50% { box-shadow: 0 0 30px rgba(201,168,76,1), 0 0 60px rgba(201,168,76,0.7); }
 }
 
+/* ===== PAGE 2: FULL PHOTO INVITATION ===== */
 #page-2 {
   background: #0a1a2a;
+  position: relative;
+  overflow: hidden;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#page-2.active {
+  display: flex;
+}
+
+.p2-bg-photo {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.p2-bg-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.p2-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(5,15,25,0.3) 0%,
+    rgba(5,15,25,0.15) 30%,
+    rgba(5,15,25,0.5) 65%,
+    rgba(5,15,25,0.85) 100%
+  );
+}
+
+.p2-ui {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 60px;
+  text-align: center;
+}
+
+.p2-dots {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+.active-dot {
+  background: #c9a84c;
+  width: 20px;
+  border-radius: 4px;
+}
+
+.p2-small-top {
+  color: #c9a84c;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.p2-names {
+  margin-bottom: 12px;
+}
+
+.p2-name {
+  color: #ffffff;
+  font-size: 40px;
+  letter-spacing: 6px;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+}
+
+.p2-and {
+  color: #c9a84c;
+  font-size: 22px;
+  margin: 6px 0;
+}
+
+.p2-tagline {
+  color: #ddeeff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.p2-bottom-line {
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a84c, transparent);
+  margin-bottom: 14px;
+}
+
+.p2-date-hint {
+  color: #c9a84c;
+  font-size: 13px;
+  letter-spacing: 4px;
 }
 
 .reveal-center {
-  text-align: center;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(20px);
   transition: opacity 1s ease, transform 1s ease;
 }
 
@@ -97,26 +213,8 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-small {
-  color: #c9a84c;
-  font-size: 20px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
 
-.reveal-name {
-  color: #ffffff;
-  font-size: 42px;
-  letter-spacing: 6px;
-  text-shadow: 0 0 20px rgba(201,168,76,0.5);
-}
 
-.reveal-and {
-  color: #c9a84c;
-  font-size: 32px;
-  margin: 8px 0;
-}
 
 /* ===== PAGE 3: MAIN INVITATION ===== */
 .scroll-page {
