@@ -191,7 +191,7 @@ function launchFireworks() {
 
 // ===== COUNTDOWN TIMER =====
 function updateCountdown() {
-  const weddingDate = new Date('2026-05-15T14:00:00');
+  const weddingDate = new Date('2026-05-17T19:00:00');
   const now = new Date();
   const diff = weddingDate - now;
 
@@ -703,16 +703,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // ===== SAVE THE DATE =====
 function saveToCalendar() {
-  const title = 'Shahan & Jannatara Wedding 💍';
-  const location = 'Hill View Restaurant & Party Centre, Khadimpara, Sylhet';
-  const details = 'You are cordially invited to the wedding celebration of Shahan Ahmed & Jannatara Afsana';
-  const startDate = '20260515T080000Z';
-  const endDate = '20260515T140000Z';
+  const title = 'Shahan & Jannatara Wedding Reception 💍';
+  const location = 'Grand Rose Garden Hotel, Khadim Shahporan, Sylhet';
+  const details = 'You are cordially invited to the wedding reception of Shahan Ahmed & Jannatara Afsana';
+  const startDate = '20260517T130000Z';
+  const endDate = '20260517T170000Z';
 
   const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
   document.getElementById('googleCalLink').href = googleUrl;
 
-  const outlookUrl = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(title)}&startdt=2026-05-15T14:00:00&enddt=2026-05-15T20:00:00&body=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+  const outlookUrl = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(title)}&startdt=2026-05-17T19:00:00&enddt=2026-05-17T23:00:00&body=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
   document.getElementById('outlookCalLink').href = outlookUrl;
 
   document.getElementById('calPopup').classList.add('show');
@@ -729,11 +729,11 @@ function downloadICS() {
 VERSION:2.0
 PRODID:-//Wedding Invitation//EN
 BEGIN:VEVENT
-DTSTART:20260515T080000Z
-DTEND:20260515T140000Z
-SUMMARY:Shahan & Jannatara Wedding 💍
-DESCRIPTION:You are cordially invited to the wedding celebration of Shahan Ahmed & Jannatara Afsana
-LOCATION:Hill View Restaurant & Party Centre, Khadimpara, Sylhet
+DTSTART:20260517T130000Z
+DTEND:20260517T170000Z
+SUMMARY:Shahan & Jannatara Wedding Reception 💍
+DESCRIPTION:You are cordially invited to the wedding reception of Shahan Ahmed & Jannatara Afsana
+LOCATION:Grand Rose Garden Hotel, Khadim Shahporan, Sylhet
 STATUS:CONFIRMED
 END:VEVENT
 END:VCALENDAR`;
@@ -749,7 +749,7 @@ END:VCALENDAR`;
 
 // ===== DYNAMIC CLOSING PAGE =====
 function updateClosingPage() {
-  const weddingDate = new Date('2026-05-15T14:00:00');
+  const weddingDate = new Date('2026-05-17T19:00:00');
   const now = new Date();
 
   const todayStr = now.toDateString();
